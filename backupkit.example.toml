@@ -1,0 +1,38 @@
+# backupkit — contoh konfigurasi
+# Salin jadi job.toml lalu sesuaikan. Semua path mendukung ~ dan $VAR.
+
+[backup]
+name = "contoh"
+staging_dir = "/tmp/backupkit"
+
+[sources]
+paths = ["~/Documents/penting"]
+sqlite = []                       # mis. ["~/app/instance/app.sqlite3"]
+exclude = ["*.tmp", "node_modules", ".cache", "__pycache__"]
+
+[sources.commands]                # keluaran perintah ikut dibackup
+# db_dump = "mysqldump --single-transaction -u root app"
+
+[crypto]
+enabled = false                   # true = wajib isi passphrase_file atau recipient
+passphrase_file = "~/.config/backupkit/pass"
+# recipient = "nama@email.com"    # enkripsi ke kunci publik
+
+[verify]
+sample = 3                        # jumlah file yang diuji-restore
+auto = true                       # verifikasi juga salinan yang sudah diunggah
+
+[notify]
+# on_failure dijalankan saat backup gagal; tersedia $BACKUPKIT_SUBJECT dan $BACKUPKIT_DETAIL
+# on_failure = "openclaw message send --channel whatsapp --target +628xxx --message \"$BACKUPKIT_SUBJECT\""
+
+[[targets]]
+kind = "local"
+path = "~/backups/lokal"
+keep = 7                          # simpan 7 backup terbaru (0 = tanpa rotasi)
+# keep_days = 30                  # atau hapus yang lebih tua dari N hari
+
+# [[targets]]
+# kind = "rclone"
+# path = "Drive:backupkit"
+# keep = 10

@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Konfigurasi lokal & state (bisa berisi path pribadi)
+job.toml
+*.local.toml
+state/
+*.tar.gz
+*.tar.gz.gpg
+pass
+*.log
+
+.DS_Store
+.idea/
+.vscode/

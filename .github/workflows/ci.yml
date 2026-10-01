@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [ "3.11", "3.12", "3.13" ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Siapkan tool sistem
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq gnupg sqlite3
+          gpg --version | head -1
+          sqlite3 --version
+
+      - name: Info lingkungan
+        run: |
+          python3 -V
+          tar --version | head -1
+
+      - name: Compile check
+        run: python3 -m compileall -q backupkit
+
+      - name: Jalankan test
+        run: python3 -m unittest discover -s tests -v
