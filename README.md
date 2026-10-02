@@ -7,7 +7,7 @@
 > dan perintah `verify` **benar-benar mengekstrak sampel file** lalu membandingkan hash-nya —
 > termasuk memverifikasi ulang **salinan yang sudah diunggah ke target**.
 
-[![CI](https://github.com/nullbyte12007/backupkit/actions/workflows/ci.yml/badge.svg)](https://github.com/nullbyte12007/backupkit/actions/workflows/ci.yml)
+[![CI](https://github.com/myusufcs/backupkit/actions/workflows/ci.yml/badge.svg)](https://github.com/myusufcs/backupkit/actions/workflows/ci.yml)
 ![Python](https://img.shields.io/badge/python-3.11%2B-blue)
 ![Zero deps](https://img.shields.io/badge/dependencies-none-success)
 ![License](https://img.shields.io/badge/license-MIT-green)
@@ -48,7 +48,7 @@ Tanpa dependensi Python — hanya standard library 3.11+ dan tool sistem `tar`/`
 Opsional: `gpg` (enkripsi), `rclone` (target remote), `sqlite3` (snapshot DB).
 
 ```bash
-git clone https://github.com/nullbyte12007/backupkit
+git clone https://github.com/myusufcs/backupkit
 cd backupkit
 python3 -m backupkit init -c job.toml     # tulis contoh konfigurasi
 ```
